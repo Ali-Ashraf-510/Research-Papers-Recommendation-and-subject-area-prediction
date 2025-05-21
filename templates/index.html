@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research Assistant</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f4f6fa;
+      color: #333;
+    }
+    header {
+      background: #34495e;
+      padding: 1rem;
+      color: white;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      animation: fadeIn 1s ease-in-out;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+      animation: slideUp 1.2s ease;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    input, button {
+      padding: 1rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+    button {
+      background-color: #2980b9;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background-color: #21618c;
+    }
+    .results {
+      margin-top: 2rem;
+    }
+    .result-item {
+      background: #f0f4f8;
+      border-left: 6px solid #3498db;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .predicted-subjects {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+    .subject-chip {
+      background: #eaf6ff;
+      color: #2c3e50;
+      border: 1px solid #3498db;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .subject-chip::before {
+      content: "📘";
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header>🔍 Research Paper Recommendation & Subject Area Prediction</header>
+  <div class="container">
+    <form action="/" method="POST">
+      <label>🔎 Enter a paper title to get similar recommendations:</label>
+      <input type="text" name="title" placeholder="e.g., Deep Learning in NLP" value="{{ input_title }}" required />
+      <button type="submit">Submit</button>
+    </form>
+
+    {% if recommended %}
+      <div class="results">
+        <h3>📄 Recommended Papers for: <em>{{ input_title }}</em></h3>
+        {% for paper in recommended %}
+          <div class="result-item">
+            <strong>{{ paper.titles }}</strong>
+            <p>{{ paper.abstracts }}</p>
+            <div class="predicted-subjects">
+              {% for subject in paper.predicted_subjects %}
+                <div class="subject-chip">{{ subject }}</div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>

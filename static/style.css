@@ -1,0 +1,28 @@
+body {
+    font-family: Arial;
+    margin: 30px;
+    background: #f2f2f2;
+    color: #333;
+}
+
+h1, h2 {
+    color: #0a74da;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+button {
+    background-color: #0a74da;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    margin-top: 10px;
+}
