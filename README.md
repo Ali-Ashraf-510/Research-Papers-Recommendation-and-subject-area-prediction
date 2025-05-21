@@ -1,4 +1,3 @@
-# Research-Papers-Recommendation-and-subject-area-prediction
 # 🔍 Research Paper Recommendation & Subject Area Prediction
 
 This project is an intelligent system that recommends similar research papers based on the title you provide. For each recommended paper, the system automatically predicts its **Subject Areas** using Natural Language Processing (NLP) and Machine Learning models.
