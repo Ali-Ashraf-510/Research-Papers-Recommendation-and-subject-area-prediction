@@ -8,18 +8,18 @@ from keras.models import load_model
 
 app = Flask(__name__)
 
-df = pd.read_csv(r"Dataset\arxiv_data_210930-054931.csv")
+df = pd.read_csv(r"Dataset/arxiv_data_210930-054931.csv")
 df.drop_duplicates(inplace=True)
 
-loaded_model = load_model("Subject_area models\subject_area_model.keras")
+loaded_model = load_model(r"Subject_area models/subject_area_model.keras")
 
-with open(r'Subject_area models\tfidf_vectorizer.pkl', 'rb') as f:
+with open(r'Subject_area models/tfidf_vectorizer.pkl', 'rb') as f:
     loaded_vectorizer = pickle.load(f)
 
-with open('Subject_area models\label_binarizer.pkl', 'rb') as f:
+with open(r'Subject_area models/label_binarizer.pkl', 'rb') as f:
     loaded_mlb = pickle.load(f)
 
-with open("recommendation_models\embeddings.pkl", "rb") as f:
+with open(r"recommendation_models/embeddings.pkl", "rb") as f:
     embeddings = pickle.load(f)
 
 rec_model = SentenceTransformer("all-MiniLM-L6-v2")
